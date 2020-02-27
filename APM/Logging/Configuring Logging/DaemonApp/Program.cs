@@ -24,7 +24,6 @@ namespace DaemonApp
             catch (Exception excp)
             {
                 logger.Error(excp, "Unable to continue execution");
-                throw;
             }
             finally
             {
@@ -35,11 +34,6 @@ namespace DaemonApp
         public static IHostBuilder CreateHostBuilder(string[] args)
         {
             return Host.CreateDefaultBuilder(args)
-                .ConfigureAppConfiguration((context, config) =>
-                {
-                    config.AddJsonFile("appsettings.json", optional: false, reloadOnChange: false);
-
-                })
                 .ConfigureServices((context, services) =>
                 {
                     services.AddHostedService<MyHostedService>();

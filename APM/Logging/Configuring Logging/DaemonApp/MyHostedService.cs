@@ -58,14 +58,14 @@ namespace DaemonApp
             switch (random.Next(0, 5))
             {
                 case 0:
-                    logger.LogDebug("The value for the order is {@order}", order);
+                    logger.LogDebug(new EventId(1, "OrderCreated"), "The value for the order is {@order}", order);
                     break;
                 case 1:
-                    logger.LogError(new ArgumentNullException(), "There was no order total for the order {@order}", order);
+                    logger.LogError(new EventId(4, "OrderCancelled"), new ArgumentNullException(), "There was no order total for the order {@order}", order);
                     break;
                 case 2:
                 default:
-                    logger.LogInformation("This log contains an order id {orderId} for the order {@order}", order.Id, order);
+                    logger.LogInformation(new EventId(2, "OrderCreated"), "This log contains an order id {orderId} for the order {@order}", order.Id, order);
                     break;
             }
         }
